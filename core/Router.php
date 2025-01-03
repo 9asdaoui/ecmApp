@@ -1,14 +1,9 @@
 <?php
-
+require_once "../controllers/AuthController.php";
 include "../vendor/autoload.php";
 
-use Ecm\App\Client;
-
-new Client();
-require_once "../controllers/AuthController.php";
-
-// include "../vendor/autoload.php";
-// use src\Client;
+// use Ecm\App\Client;
+// new Client();
 
 
 $url = $_POST['url'];
@@ -41,6 +36,7 @@ if (isset($routes[$url])) {
         }
 
         call_user_func_array([$object, $method], $inputs);
+        echo "still here";
     } else {
         echo "Method $method does not exist in $class.";
     }

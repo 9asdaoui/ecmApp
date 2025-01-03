@@ -1,3 +1,13 @@
+<?php 
+session_start();
+
+if (!isset($_SESSION["userid"])||$_SESSION["role"]!=="admin") {
+header("location:../log_in.php");
+exit();
+}else{
+    echo 'you hae the acces';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

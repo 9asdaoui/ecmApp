@@ -1,11 +1,7 @@
 <?php
-// namespace src\Controllers;
 
 use Ecm\App\User;
 use Ecm\App\Client;
-
-// require_once "../src/User.php";
-// require_once "../src/Client.php";
 
 
 class AuthController{
