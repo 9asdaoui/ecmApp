@@ -1,6 +1,6 @@
 <?php
 
-namespace src;
+namespace Ecm\App;
 
 class Database
 {

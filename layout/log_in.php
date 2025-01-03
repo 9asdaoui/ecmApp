@@ -115,12 +115,13 @@
     </style>
   <div class="login-container">
     <div class="login-form">
+      <!-- ISSET5($error) echo $a; -->
       <h1>Welcome Back</h1>
       <p>Login to access your account</p>
 
-      <form action="router.php" method="POST">
+      <form action="../core/router.php" method="POST">
         <div class="input-group">
-          <input type="text" name="username" id="username" required>
+          <input type="text" name="email" id="email" required>
           <label for="username">Username</label>
         </div>
         <div class="input-group">
@@ -138,3 +139,4 @@
   </div>
 </body>
 </html>
+

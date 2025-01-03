@@ -1,6 +1,6 @@
 <?php
-namespace src;
-use src\User;
+namespace Ecm\App;
+use Ecm\App\User;
 // require_once "User.php";
 
 class Admin extends User

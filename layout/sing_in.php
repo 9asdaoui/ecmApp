@@ -122,7 +122,7 @@
       <h1>Create Account</h1>
       <p>Join us and start your journey!</p>
 
-      <form action="../src/router.php" method="POST">
+      <form action="../core/router.php" method="POST">
 
         <div class="input-group">
           <input type="text" name="fullname" id="fullname" required>
@@ -139,7 +139,7 @@
         <div class="input-group">
           <input type="password" name="confirm_password" id="confirm_password" required>
           <label for="confirm_password">Confirm Password</label>
-          <input type="hidden" name="url" value="sign">
+          <input type="hidden" name="url" value="register">
 
         </div>
         <button type="submit" class="signup-btn" name="signup-btn">Sign Up</button>

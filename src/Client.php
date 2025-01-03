@@ -1,8 +1,8 @@
 <?php
+namespace Ecm\App;
 
-namespace src;
-use src\User;
-use src\Database;
+use Ecm\App\User;
+use Ecm\App\Database;
 
 
 class Client extends User
@@ -23,37 +23,34 @@ class Client extends User
 
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-        try {
-            $db = Database::getConnection();
+        $db = Database::getConnection();
 
-            $stmt = $db->prepare('SELECT * FROM users WHERE email = :email');
-            $stmt->execute(['email' => $email]);
+        $stmt = $db->prepare('SELECT * FROM users WHERE email = :email');
+        $stmt->execute(['email' => $email]);
 
-            if ($stmt->rowCount() > 0) {
-                return "Email already in use.";
-            }
-
-            $stmt = $db->prepare('INSERT INTO users (name, email, password, role, image) VALUES (:name, :email, :password, :role, :image)');
-            $stmt->execute([
-                'name' => $fullname,
-                'email' => $email,
-                'password' => $hashedPassword,
-                'role' => 'client',
-                'image' => 'default.jpg' 
-            ]);
-
-            $userId = $db->lastInsertId();
-
-            $stmt = $db->prepare('INSERT INTO clients (user_id, is_active) VALUES (:user_id, :is_active)');
-            $stmt->execute([
-                'user_id' => $userId,
-                'is_active' => $this->isActive
-            ]);
-
-            return "Registration successful.";
-        } catch (\PDOException $e) {
-            return "Error: " . $e->getMessage();
+        if ($stmt->rowCount() > 0) {
+            return "Email already in use.";
         }
+
+        $stmt = $db->prepare('INSERT INTO users (name, email, password, role, image) VALUES (:name, :email, :password, :role, :image)');
+        $stmt->execute([
+            'name' => $fullname,
+            'email' => $email,
+            'password' => $hashedPassword,
+            'role' => 'client',
+            'image' => 'default.jpg' 
+        ]);
+
+        $userId = $db->lastInsertId();
+
+        $stmt = $db->prepare('INSERT INTO clients (user_id, is_active) VALUES (:user_id, :is_active)');
+        $stmt->execute([
+            'user_id' => $userId,
+            'is_active' => $this->isActive
+        ]);
+        
+
+        return "Registration successful.";
     }
 
     public function placeOrder()

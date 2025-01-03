@@ -1,8 +1,8 @@
 {
-    "name": "youcode/ecm-app",
+    "name": "ecm/app",
     "autoload": {
         "psr-4": {
-            "src\\": "ecmApp"
+            "Ecm\\App\\": "src/"
         }
     },
     "authors": [
@@ -11,7 +11,5 @@
             "email": "oussamaqasdaoui@gmail.com"
         }
     ],
-    "require": {
-        "firebase/php-jwt": "^6.10"
-    }   
+    "require": {}
 }

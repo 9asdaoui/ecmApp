@@ -1,21 +1,51 @@
 <?php
 
 include "../vendor/autoload.php";
-use src\Client;
+
+use Ecm\App\Client;
+
+new Client();
+require_once "../controllers/AuthController.php";
+
+// include "../vendor/autoload.php";
+// use src\Client;
 
 
-$url = $_POST["url"];
+$url = $_POST['url'];
 
 $routes = [
-    'sing'=> [Client::class,"register"]
+    'register' => [
+        'controller' => AuthController::class,
+        'method' => 'register',
+        'params' => ['fullname', 'email','password', 'confirm_password'],
+    ],
+    'login' => [
+        'controller' => AuthController::class,
+        'method' => 'login',
+        'params' => ['email', 'password'], 
+    ],
 ];
 
-if (isset($routes[$url])){
+if (isset($routes[$url])) {
+    $route = $routes[$url];
+    $class = $route['controller'];
+    $method = $route['method'];
+    $expectedParams = $route['params'];
 
-  [$class, $method] = $routes[$url];
     $object = new $class();
-    $object->$method();
 
+    if (method_exists($object, $method)) {
+        $inputs = [];
+        foreach ($expectedParams as $param) {
+            $inputs[] = $_POST[$param];
+        }
+
+        call_user_func_array([$object, $method], $inputs);
+    } else {
+        echo "Method $method does not exist in $class.";
+    }
+} else {
+    echo "Route not found or no URL specified.";
 }
 
 

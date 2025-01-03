@@ -1,7 +1,7 @@
 <?php
-namespace src;
-use src\Database;
-use src\Product;
+namespace Ecm\App;
+use Ecm\App\Database;
+use Ecm\App\Product;
 
 class ProductManager
 {

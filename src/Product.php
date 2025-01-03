@@ -1,5 +1,5 @@
 <?php
-namespace src;
+namespace Ecm\App;
 // use src\Database;
 
 class Product
