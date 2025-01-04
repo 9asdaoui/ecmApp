@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -139,7 +140,16 @@
         <div class="input-group">
           <input type="password" name="confirm_password" id="confirm_password" required>
           <label for="confirm_password">Confirm Password</label>
+          
           <input type="hidden" name="url" value="register">
+          <h2 style="color:red;">
+            <?php 
+              if (isset($_SESSION["error_message"])) {  
+                echo $_SESSION["error_message"];
+                unset($_SESSION["error_message"]);
+                }            
+            ?>
+          </h2>
 
         </div>
         <button type="submit" class="signup-btn" name="signup-btn">Sign Up</button>

@@ -12,7 +12,7 @@ class AuthController{
     private $confirmPassword;
  
     public function register($fullname,$email,$password,$confpassword){
-   
+             session_start();
                 $this->fullname = $fullname;
                 $this->email = $email;
                 $this->password = $password;
@@ -25,24 +25,29 @@ class AuthController{
                 if ($message === "Registration successful.") {
 
                     $this->login($this->email,$this->password);
-                    exit();
                 } else {
-                    echo $message;
+                    $_SESSION["error_message"] = $message;
+                    header("location:../layout/sing_in.php");
                 }
-    
     }
     public function login($email,$password){
            
-        $this->email = $email;
-        $this->password = $password;
-    
-        $client = new User();
-    
-        $client->login( $this->email, $this->password);
+                $this->email = $email;
+                $this->password = $password;
+            
+                $client = new User();
+            
+                $message = $client->login( $this->email, $this->password);
 
-        // header("Location: ../layout/log_in.php");
+                if ($message === "Login successful.") {
+
+                    $this->login($this->email,$this->password);
+                } else {
+                    $_SESSION["error_message"] = $message;
+                    header("location:../layout/sing_in.php");
+                }
     }
 }
 
 
-?>
+

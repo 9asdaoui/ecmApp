@@ -4,6 +4,10 @@ include "../vendor/autoload.php";
 
 // use Ecm\App\Client;
 // new Client();
+session_start();
+    if(isset($_SESSION["error_message"])){
+      echo $_SESSION["error_message"];
+    }  
 
 
 $url = $_POST['url'];
