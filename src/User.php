@@ -34,13 +34,16 @@ class User
            $_SESSION["userid"]=$myuser["id"];
            $_SESSION["email"]=$myuser["email"];
            $_SESSION["role"]=$myuser["role"];
-
+        
 
            if ($myuser["role"]=="admin") {
+            
             header("location:../layout/admin");
            }else{
             header("location:../layout/user");
            }
+        }else{
+            return "password or the email is not correct";
         }
     }
 

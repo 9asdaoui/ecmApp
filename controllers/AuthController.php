@@ -39,15 +39,9 @@ class AuthController{
             
                 $message = $client->login( $this->email, $this->password);
 
-                if ($message === "Login successful.") {
-
-                    $this->login($this->email,$this->password);
-                } else {
+                if ($message === "password or the email is not correct") {
                     $_SESSION["error_message"] = $message;
-                    header("location:../layout/sing_in.php");
+                    header("location:../layout/log_in.php");
                 }
     }
 }
-
-
-

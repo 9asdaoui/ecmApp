@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -128,6 +129,14 @@
           <input type="password" name="password" id="password" required>
           <input type="hidden" name="url" value="login">
           <label for="password">Password</label>
+          <h2 style="color:red;">
+            <?php 
+              if (isset($_SESSION["error_message"])) {  
+                echo $_SESSION["error_message"];
+                unset($_SESSION["error_message"]);
+                }            
+            ?>
+          </h2>
         </div>
         <button type="submit" class="login-btn" name="login-btn">Login</button>
       </form>
