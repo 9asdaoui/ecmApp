@@ -48,7 +48,7 @@
         }
 
         .input-group input {
-        width: 100%;
+        width: 94%;
         padding: 10px;
         font-size: 1em;
         border: 1px solid #ccc;
@@ -116,7 +116,6 @@
     </style>
   <div class="login-container">
     <div class="login-form">
-      <!-- ISSET5($error) echo $a; -->
       <h1>Welcome Back</h1>
       <p>Login to access your account</p>
 

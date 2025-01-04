@@ -7,13 +7,11 @@ CREATE TABLE users (
     role ENUM('client', 'admin') DEFAULT 'client'
 );
 
-
 CREATE TABLE clients (
     user_id INT PRIMARY KEY,
     is_active BOOLEAN DEFAULT TRUE,
     FOREIGN KEY (user_id) REFERENCES users(id) 
 );
-
 
 CREATE TABLE orders (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -23,9 +21,6 @@ CREATE TABLE orders (
     order_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
-
-
-
 
 CREATE TABLE order_items (
     id INT AUTO_INCREMENT PRIMARY KEY,

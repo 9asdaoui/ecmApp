@@ -1,5 +1,6 @@
 <?php
 require_once "../controllers/AuthController.php";
+require_once "../controllers/ProductController.php";
 include "../vendor/autoload.php";
 
 // use Ecm\App\Client;
@@ -22,9 +23,23 @@ $routes = [
         'controller' => AuthController::class,
         'method' => 'login',
         'params' => ['email', 'password'], 
-    ],
+    ], 
+    'addproduct' => [
+        'controller' => ProductController::class,
+        'method' => 'addproduct',
+        'params' => ['name', 'description','price', 'quantity','category','image'],
+    ]
 ];
 
+
+// if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['adp'])) {
+//     echo $name = $_POST['name'] . "<br>";
+//     echo $description = $_POST['description']. "<br>";
+//     echo $price = $_POST['price']. "<br>";
+//     echo $addproduct = $_POST['url']. "<br>";
+
+
+// }
 if (isset($routes[$url])) {
     $route = $routes[$url];
     $class = $route['controller'];
@@ -53,31 +68,4 @@ if (isset($routes[$url])) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-// if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['signup-btn'])) {
-//     $fullname = $_POST['fullname'];
-//     $email = $_POST['email'];
-//     $password = $_POST['password'];
-//     $confirmPassword = $_POST['confirm_password'];
-
-//     $client = new Client();
-
-//     $message = $client->register($fullname, $email, $password, $confirmPassword);
-
-//     if ($message === "Registration successful.") {
-//         header("Location: ./log_in.php");
-//         exit();
-//     } else {
-//         echo $message;
-//     }
-// }
 ?>
