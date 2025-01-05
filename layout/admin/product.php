@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../../controllers/ProductController.php';
 include"nav.php";
+
 ?>
 <style>
     .form-container {
@@ -88,8 +89,8 @@ include"nav.php";
     }
 
     .product-image img {
-        width: 100%;
-        height: auto;
+        width: 279px;
+        height: 200px;
         object-fit: cover;
         border-bottom: 1px solid #ddd;
     }
@@ -169,7 +170,7 @@ include"nav.php";
         }            
     ?> 
 </h2>
-<button popovertarget="my-formproduct">
+<button popovertarget="my-formproduct" id="addFormProduct">
     add new product
 </button>
 </div>
@@ -184,40 +185,56 @@ include"nav.php";
 <div class="form-container" popover id="my-formproduct">
         <h2>Add New Product</h2>
         
-        
+        <?php 
+        if(isset($_GET["Edite-id"])){
+            $productm = new ProductController;
+            $product = $productm->viewProduct($_GET["Edite-id"]);
+
+            echo "<script> document.getElementById('addFormProduct').click();</script>";
+        }
+        ?>
+
         <form id="addProductForm" action="../../core/Router.php" method="POST">
             <div class="form-group">
                 <label for="productName">Product Name</label>
-                <input type="text" id="productName" name="name" placeholder="Enter product name" required>
+                <input type="text" id="productName" name="name" placeholder="Enter product name" required value="<?php if(isset($_GET["Edite-id"])){ echo $product->getName();}  ?>">
             </div>
             <div class="form-group">
                 <label for="price">Price ($)</label>
-                <input type="number" id="price" name="price" step="0.01" min="0" placeholder="Enter price" required>
+                <input type="number" id="price" name="price" step="0.01" min="0" placeholder="Enter price" required value="<?php if(isset($_GET["Edite-id"])){ echo $product->getPrice();}  ?>">
             </div>
             <div class="form-group">
                 <label for="quantity">Quantity</label>
-                <input type="number" id="quantity" name="quantity" min="1" placeholder="Enter quantity" required>
+                <input type="number" id="quantity" name="quantity" min="1" placeholder="Enter quantity" required value="<?php if(isset($_GET["Edite-id"])){ echo $product->getQuantity();}  ?>">
             </div>
             <div class="form-group">
                 <label for="category">Category</label>
                 <select id="category" name="category" required>
-                    <option value="">Select Category</option>
-                    <option value="Electronics">Electronics</option>
-                    <option value="Fashion">Fashion</option>
-                    <option value="Home">Home</option>
-                    <option value="Beauty">Beauty</option>
-                    <option value="Sports">Sports</option>
+                    <option value="" <?php if(!isset($_GET["Edite-id"])){ echo "selected";}?> disabled > Select category </option>
+                    <option value="Electronics" <?php if(isset($_GET["Edite-id"])){  if($product->getCategory()=="Electronics"){ echo "selected";}}?> >Electronics</option>
+                    <option value="Fashion" <?php if(isset($_GET["Edite-id"])){  if($product->getCategory()=="Fashion"){ echo "selected";}}?>>Fashion</option>
+                    <option value="Home" <?php if(isset($_GET["Edite-id"])){  if($product->getCategory()=="Home"){ echo "selected";}}?>>Home</option>
+                    <option value="Beauty" <?php if(isset($_GET["Edite-id"])){  if($product->getCategory()=="Beauty"){ echo "selected";}}?>>Beauty</option>
+                    <option value="Sports" <?php if(isset($_GET["Edite-id"])){  if($product->getCategory()=="Sports"){ echo "selected";}}?>>Sports</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="image">Product Image URL</label>
-                <input type="text" id="image" name="image" placeholder="Enter image URL">
+                <input type="text" id="image" name="image" placeholder="Enter image URL" value="<?php if(isset($_GET["Edite-id"])){ echo $product->getImage();}  ?>">
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea id="description" name="description" rows="4" placeholder="Write a short description"></textarea>
+                <textarea id="description" name="description" rows="4" placeholder="Write a short description" ><?php if(isset($_GET["Edite-id"])){ echo $product->getDescription();}  ?></textarea>
             </div>
-            <input type="hidden" name="url" value="addproduct">
+            <?php
+            if(isset($_GET["Edite-id"])){
+               echo "<input type='hidden' name='Edite-id' value='".$product->getId()."' />";
+               echo'<input type="hidden" name="url" value="Edit">';
+
+            }else{
+                echo'<input type="hidden" name="url" value="addproduct">';
+            }
+            ?>
             <button type="submit" class="btnsub" name="adp">Add Product</button>
         </form>
     </div>

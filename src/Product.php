@@ -114,9 +114,9 @@ class Product
                 <p class='product-category'>Category: $this->category</p>
                 <div class='product-actions'>
                 
-                <form action='/products/edit.php' method='GET' style='display:inline;'>
+                <form action='' method='GET' style='display:inline;'>
                     <input type='hidden' name='url' value='Edit' />
-                    <input type='hidden' name='id' value='$this->id' />
+                    <input type='hidden' name='Edite-id' value='$this->id' />
                     <button type='submit' class='edit-btn' style='
                         background:none;
                         border:none;

@@ -22,13 +22,17 @@ $routes = [
         'method' => 'addproduct',
         'params' => ['name', 'description','price', 'quantity','category','image'],
     ],
-     'Delet' => [
+    'Delet' => [
         'controller' => ProductController::class,
         'method' => 'deleteProduct',
         'params' => ['id'],
+    ],
+    'Edit' => [
+        'controller' => ProductController::class,
+        'method' => 'updateProduct',
+        'params' => ['Edite-id','name', 'description','price', 'quantity','category','image'],
     ]
 ];
-
 
 if (isset($routes[$url])) {
     $route = $routes[$url];
@@ -57,10 +61,3 @@ if (isset($routes[$url])) {
 } else {
     echo "Route not found or no URL specified.";
 }
-
-// if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['adp'])) {
-//     echo $name = $_POST['name'] . "<br>";
-//     echo $description = $_POST['description']. "<br>";
-//     echo $price = $_POST['price']. "<br>";
-//     echo $addproduct = $_POST['url']. "<br>";
-// }

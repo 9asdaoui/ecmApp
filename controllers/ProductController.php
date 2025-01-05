@@ -39,15 +39,19 @@ class ProductController{
         header("location:../layout/admin/product.php");
     }
 
-    public function updateProduct(Product $product)
+    public function updateProduct($productId,$name,$description,$price,$quantity,$category,$image)
     {
-        ProductManager::update($product);
-        echo "Product updated successfully.";
+        $productobj = new Product($productId,$name,$description,$price,$quantity,$category,$image);
+        ProductManager::update($productobj);
+        session_start();
+        $meesage = "Product updated successfully.";
+        $_SESSION["succesMessage"] = $meesage;
+        header("location:../layout/admin/product.php");
     }
 
     public function viewProduct($productId)
     {
-        $product = ProductManager::getProduct($productId);
-        echo "Product Name: " . $product->getName();
+        return $product = ProductManager::getProduct($productId);
     }
 }
+
