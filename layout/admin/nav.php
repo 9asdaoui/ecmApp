@@ -1,6 +1,5 @@
 <?php 
 session_start();
-
 if (!isset($_SESSION["userid"])||$_SESSION["role"]!=="admin") {
 header("location:../log_in.php");
 exit();
@@ -42,7 +41,7 @@ exit();
     }
     .main-content {
         padding-top: 105px;
-        margin-left: 260px;
+        margin-left: 189px;
         padding-right: 30px;
         padding-left: 30px;
     }
@@ -51,68 +50,50 @@ exit();
         border-radius: 10px;
         box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
     }
-    .form-container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        .error {
+            color: red;
+            font-size: 20px;
         }
-
-        .form-container h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        form {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
-
-        .form-group {
+        /* .succes {
+            color: greenyellow;
+            font-size: 20px;
+        } */
+        .main-content-nav {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 16px 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .form-group label {
-            margin-bottom: 5px;
+        /* Success message styling */
+        .main-content-nav .succes {
+            font-size: 1.2rem;
+            color: #4CAF50; /* Green color for success */
+            margin: 0;
             font-weight: bold;
         }
 
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 14px;
-        }
-
-        .form-group textarea {
-            resize: none;
-            grid-column: span 2;
-        }
-
-        .btnsub {
-            grid-column: span 2;
-            padding: 10px;
-            font-size: 16px;
-            background-color: #007BFF;
+        /* Button styling */
+        .main-content-nav button {
+            background-color: #007BFF; /* Blue color for button */
             color: white;
             border: none;
             border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1rem;
             cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
-        .btnsub:hover {
-            background-color: #0056b3;
-        }
-        .error {
-            color: red;
-            font-size: 12px;
+        /* Button hover effect */
+        .main-content-nav button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
         }
 </style>
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark" style="position: fixed;width: 100%;z-index: 1;">

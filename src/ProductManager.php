@@ -1,8 +1,9 @@
 <?php
-namespace Ecm\App;
-
-use Ecm\App\Database;
-use Ecm\App\Product;
+// namespace Ecm\App;
+// use Ecm\App\Database;
+// use Ecm\App\Product;
+require_once "Database.php";
+require_once "Product.php";
 
 class ProductManager
 {
@@ -22,6 +23,7 @@ class ProductManager
             ':category' => $product->getCategory(),
             ':image' => $product->getImage()
         ]);
+        return "product added succesfuly";
 
     }
 
@@ -33,15 +35,8 @@ class ProductManager
         $products = $stmt->fetchAll();
         $data = [];
         foreach ($products as $product) {
-            $data[] = new Product(
-                $product['id'], 
-                $product['name'], 
-                $product['description'], 
-                $product['price'], 
-                $product['quantity'], 
-                $product['category'], 
-                $product['image']
-            );
+            $data[] = new Product($product['id'],$product['name'],$product['description'],
+            $product['price'],$product['quantity'],$product['category'],$product['image']);
         }
         return $data;
     }

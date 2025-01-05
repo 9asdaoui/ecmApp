@@ -128,7 +128,7 @@
           <input type="password" name="password" id="password" required>
           <input type="hidden" name="url" value="login">
           <label for="password">Password</label>
-          <h2 style="color:red;">
+          <h2 class="error">
             <?php 
               if (isset($_SESSION["error_message"])) {  
                 echo $_SESSION["error_message"];

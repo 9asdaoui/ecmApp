@@ -3,15 +3,8 @@ require_once "../controllers/AuthController.php";
 require_once "../controllers/ProductController.php";
 include "../vendor/autoload.php";
 
-// use Ecm\App\Client;
-// new Client();
-session_start();
-    if(isset($_SESSION["error_message"])){
-      echo $_SESSION["error_message"];
-    }  
-
-
-$url = $_POST['url'];
+$url = $_REQUEST['url'];
+$requestMethod = $_SERVER['REQUEST_METHOD'];
 
 $routes = [
     'register' => [
@@ -28,18 +21,15 @@ $routes = [
         'controller' => ProductController::class,
         'method' => 'addproduct',
         'params' => ['name', 'description','price', 'quantity','category','image'],
+    ],
+     'Delet' => [
+        'controller' => ProductController::class,
+        'method' => 'deleteProduct',
+        'params' => ['id'],
     ]
 ];
 
 
-// if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['adp'])) {
-//     echo $name = $_POST['name'] . "<br>";
-//     echo $description = $_POST['description']. "<br>";
-//     echo $price = $_POST['price']. "<br>";
-//     echo $addproduct = $_POST['url']. "<br>";
-
-
-// }
 if (isset($routes[$url])) {
     $route = $routes[$url];
     $class = $route['controller'];
@@ -50,8 +40,13 @@ if (isset($routes[$url])) {
 
     if (method_exists($object, $method)) {
         $inputs = [];
+    
         foreach ($expectedParams as $param) {
-            $inputs[] = $_POST[$param];
+            if ($requestMethod === 'POST') {
+                $inputs[] = $_POST[$param];
+            } elseif ($requestMethod === 'GET') {
+                $inputs[] = $_GET[$param];
+            }
         }
 
         call_user_func_array([$object, $method], $inputs);
@@ -63,9 +58,9 @@ if (isset($routes[$url])) {
     echo "Route not found or no URL specified.";
 }
 
-
-
-
-
-
-?>
+// if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['adp'])) {
+//     echo $name = $_POST['name'] . "<br>";
+//     echo $description = $_POST['description']. "<br>";
+//     echo $price = $_POST['price']. "<br>";
+//     echo $addproduct = $_POST['url']. "<br>";
+// }

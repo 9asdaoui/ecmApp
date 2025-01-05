@@ -1,8 +1,9 @@
 <?php
-namespace Ecm\App;
-
-use Ecm\App\User;
-use Ecm\App\Database;
+// namespace Ecm\App;
+// use Ecm\App\User;
+// use Ecm\App\Database;
+require_once "User.php";
+require_once "Database.php";
 
 
 class Client extends User

@@ -1,30 +1,42 @@
 <?php
+// use Ecm\App\ProductManager;
+// use Ecm\App\Product;
+require_once __DIR__ . '/../src/ProductManager.php';
+require_once __DIR__ . '/../src/Product.php';
 
-use Ecm\App\User;
-use Ecm\App\Admin;
-use Ecm\App\ProductManager;
-use Ecm\App\Product;
+
 
 class ProductController{
 
     public function addproduct($name,$description,$price,$quantity,$category,$image)
     {
         $newProduct = new Product(null,$name,$description,$price,$quantity,$category,$image);
-        ProductManager::insert($newProduct);
+        $meesage = ProductManager::insert($newProduct);
+        session_start();
+        $_SESSION["succesMessage"] = $meesage;
         header("location:../layout/admin/product.php");
+        
     }
-    public function manageProducts()
+    
+    public function displayAll()
     {
         $products = ProductManager::displayAll();
+        
+        $tableRows = "";
+
         foreach ($products as $product) {
-            echo $product->getName() . "<br>";
+            $tableRows .= $product->rendreRow();
         }
+        return $tableRows;
     }
 
     public function deleteProduct($productId)
     {
         ProductManager::delete($productId);
-        echo "Product with ID $productId deleted successfully.";
+        session_start();
+        $meesage = "Product with ID $productId deleted successfully.";
+        $_SESSION["succesMessage"] = $meesage;
+        header("location:../layout/admin/product.php");
     }
 
     public function updateProduct(Product $product)

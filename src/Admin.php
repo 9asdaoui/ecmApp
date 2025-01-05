@@ -1,6 +1,7 @@
 <?php
-namespace Ecm\App;
-use Ecm\App\ProductManager;
+// namespace Ecm\App;
+// use Ecm\App\ProductManager;
+require_once "User.php";
 
 class Admin extends User
 {

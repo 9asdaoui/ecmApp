@@ -1,7 +1,8 @@
 <?php
-namespace Ecm\App;
+// namespace Ecm\App;
 
-use Ecm\App\Database;
+// use Ecm\App\Database;
+require_once "Database.php";
 
 class User
 {

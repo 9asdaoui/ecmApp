@@ -1,5 +1,5 @@
 <?php
-namespace Ecm\App;
+// namespace Ecm\App;
 
 class Product
 {
@@ -101,17 +101,51 @@ class Product
 
     public function rendreRow()
     {
-        return "<tr>
-                    <td>$this->name</td>
-                    <td>$this->description</td>
-                    <td>$this->price</td>
-                    <td>$this->quantity</td>
-                    <td>$this->category</td>
-                    <td><img src='$this->image' alt='Product Image' style='width: 50px; height: 50px;'></td>
-                    <td>
-                        <a href='/products/edit.php?id=$this->id'>Edit</a>
-                        <a href='/products/delete.php?id=$this->id'>Delete</a>
-                    </td>
-                </tr>";
+        return "
+        <div class='product-card'>
+            <div class='product-image'>
+                <img src='$this->image' alt='Product Image'>
+            </div>
+            <div class='product-details'>
+                <h3 class='product-name'>$this->name</h3>
+                <p class='product-description'>$this->description</p>
+                <p class='product-price'>$this->price</p>
+                <p class='product-quantity'>Quantity: $this->quantity</p>
+                <p class='product-category'>Category: $this->category</p>
+                <div class='product-actions'>
+                
+                <form action='/products/edit.php' method='GET' style='display:inline;'>
+                    <input type='hidden' name='url' value='Edit' />
+                    <input type='hidden' name='id' value='$this->id' />
+                    <button type='submit' class='edit-btn' style='
+                        background:none;
+                        border:none;
+                        color:#007bff;
+                        text-decoration:underline;
+                        cursor:pointer;
+                        font-size:16px;
+                        font-weight:500;
+                        transition: color 0.3s ease, text-decoration 0.3s ease;
+                        padding:0;'>Edit</button>
+                </form>
+
+                <form action='../../core/Router.php' method='GET' style='display:inline;'>
+                    <input type='hidden' name='url' value='Delet' />
+                    <input type='hidden' name='id' value='$this->id' />
+                    <button type='submit' class='delete-btn' style='
+                        background:none;
+                        border:none;
+                        color:#dc3545;
+                        text-decoration:underline;
+                        cursor:pointer;
+                        font-size:16px;
+                        font-weight:500;
+                        transition: color 0.3s ease, text-decoration 0.3s ease;
+                        padding:0;'>Delete</button>
+                </form>
+                </div>
+            </div>
+        </div>
+    ";
     }
 }
