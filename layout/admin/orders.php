@@ -1,4 +1,6 @@
-<?php include"nav.php"?>
+<?php 
+require_once __DIR__ . '/../../controllers/OrderController.php';
+include"nav.php"?>
 
 <!-- Orders Table -->
 <div class="main-content">
@@ -14,11 +16,15 @@
             <th>Date</th>
             <th>Status</th>
             <th>Amount</th>
+            <th>Order detiles</th>
           </tr>
         </thead>
         <tbody id="orderTable">
-          <!-- Dynamic Content -->
-        </tbody>
+        <?php
+        $class = new OrderController;
+        echo $class->displayAll(); 
+         ?> 
+       </tbody>
       </table>
     </div>
     </div>

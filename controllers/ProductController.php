@@ -10,6 +10,7 @@ class ProductController{
 
     public function addproduct($name,$description,$price,$quantity,$category,$image)
     {
+        // validation
         $newProduct = new Product(null,$name,$description,$price,$quantity,$category,$image);
         $meesage = ProductManager::insert($newProduct);
         session_start();
@@ -18,6 +19,7 @@ class ProductController{
         
     }
     
+
     public function displayAll()
     {
         $products = ProductManager::displayAll();
