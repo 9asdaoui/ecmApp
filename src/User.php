@@ -11,14 +11,16 @@ class User
     protected $email;
     protected $password;
     protected $role;
+    protected $image;
 
-    public function __construct($id=null, $name=null, $email=null, $password=null, $role = 'client')
+    public function __construct($id=null,$image=null, $name=null, $email=null, $password=null, $role = 'client')
     {
         $this->id = $id;
         $this->name = $name;
         $this->email = $email;
         $this->password = $password;
         $this->role = $role;
+        $this->image = $image;
     }
 
     public function login($email,$password){

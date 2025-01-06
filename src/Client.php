@@ -10,9 +10,9 @@ class Client extends User
 {
     private $isActive;
 
-    public function __construct($id = null, $name = null, $email = null, $password = null, $isActive = true)
+    public function __construct($id,$image, $name, $email, $password, $isActive = true)
     {
-        parent::__construct($id, $name, $email, $password, 'client');
+        parent::__construct($id,$image, $name, $email, $password, 'client');
         $this->isActive = $isActive;
     }
 
@@ -53,15 +53,22 @@ class Client extends User
 
         return "Registration successful.";
     }
+    
 
-    public function placeOrder()
-    {
-        // Logic to place an order
-    }
+    public function rendreRow()
+    {         
+        if($this->isActive=="active"){$btn="disactivate";}else{$btn="activate";};
 
-    public function deleteOrder($orderId)
-    {
-        // Logic to delete an order
+        return
+        '<tr>
+            <td>'.$this->id.'</td>
+            <td><img src='.$this->image.'></td>
+            <td>'.$this->name.'</td>
+            <td>'.$this->email.'</td>
+            <td>'.$this->isActive.'</td>
+            <td><a type=""submit class="statubtn" href="?changestatu='.$this->id.'">'.$btn.'</a></td>
+
+        </tr>';
     }
 }
 ?>

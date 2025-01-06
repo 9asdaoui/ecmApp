@@ -50,6 +50,7 @@ exit();
         border-radius: 10px;
         box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
     }
+
         .error {
             color: red;
             font-size: 20px;
@@ -95,6 +96,17 @@ exit();
         .main-content-nav button:hover {
             background-color: #0056b3; /* Darker blue on hover */
         }
+        .statubtn{
+            background-color: #007BFF; 
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+          
+        }
+       
 </style>
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark" style="position: fixed;width: 100%;z-index: 1;">
             <a class="navbar-brand ps-3" href="index.php">    <h3 class="text-center">Admin Dashboard</h3></a>

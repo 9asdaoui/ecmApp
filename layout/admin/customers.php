@@ -1,5 +1,11 @@
-<?php include"nav.php"?>
-
+<?php 
+require_once __DIR__ . '/../../controllers/ClientsController.php';
+include"nav.php";
+if(isset($_GET["changestatu"])){
+  $id=$_GET["changestatu"];
+  $class = ClientManager::changestat($id);
+}
+?>
 <div class="main-content">
 <div id="customers" class="card p-3">
       <h5>Recent customers</h5>
@@ -8,14 +14,18 @@
         <thead>
           <tr>
             <th>customers ID</th>
+            <th>profile</th>
             <th>Customer name</th>
-            <th>Date</th>
+            <th>email</th>
             <th>Status</th>
-            <th>Amount</th>
+            <th>change Status</th>
           </tr>
         </thead>
         <tbody id="customersTable">
-          <!-- Dynamic Content -->
+          <?php
+            $costumer = new ClientsController;
+            echo $costumer->displayAll();
+          ?>        
         </tbody>
       </table>
     </div>
