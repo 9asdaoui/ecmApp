@@ -89,10 +89,10 @@ exit();
     .main-content-nav button:hover {
         background-color: #0056b3;
     }
-    .statubtn{
+    .statubtnact{
         text-decoration: none;
-        background-color: #007BFF;
-        color: white;
+        color: #4bde97;
+        background-color: rgba(75, 222, 151, 0.1); 
         border: none;
         border-radius: 5px;
         font-size: 1.4rem;
@@ -101,6 +101,40 @@ exit();
 
         
     }
+    .statubtndis{
+        text-decoration: none;
+        color: #f26464;
+        background-color: rgba(245, 91, 93, 0.1); 
+        border: none;
+        border-radius: 5px;
+        font-size: 1.4rem;
+        cursor: pointer;
+        padding: 5px;
+    }
+    .badge-active {
+        color: #5887ff;
+        background-color: rgba(88, 135, 255, 0.1);
+        }
+
+        .badge-pending {
+        color: #ffb648;
+        background-color: rgba(255, 172, 50, 0.1);
+        }
+
+        .badge-disabled {
+        color: white;
+        background-color: #ffb648;
+        }
+
+        .badge-trashed {
+        color: #f26464;
+        background-color: rgba(245, 91, 93, 0.1);
+        }
+
+        .badge-success {
+        color: #4bde97;
+        background-color: rgba(75, 222, 151, 0.1);
+        }
     
 </style>
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark" style="position: fixed;width: 100%;z-index: 1;">

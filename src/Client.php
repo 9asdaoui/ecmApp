@@ -57,8 +57,15 @@ class Client extends User
 
     public function rendreRow()
     {         
-        if($this->isActive=="active"){$btn="disactivate";}else{$btn="activate";};
-
+        if($this->isActive=="active"){
+            $btn="disactivate";
+            $style = "statubtndis";
+        }else{
+            $btn="activate";
+            $style = "statubtnact";
+        };
+        
+        
         return
         '<tr style="font-size: large;">
             <td >'.$this->id.'</td>
@@ -66,7 +73,8 @@ class Client extends User
             <td>'.$this->name.'</td>
             <td>'.$this->email.'</td>
             <td>'.$this->isActive.'</td>
-            <td><a type=""submit class="statubtn" href="?changestatu='.$this->id.'">'.$btn.'</a></td>
+            
+            <td><a type=""submit class="'.$style.'" href="?changestatu='.$this->id.'">'.$btn.'</a></td>
 
         </tr>';
     }

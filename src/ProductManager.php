@@ -10,6 +10,7 @@ class ProductManager
 
     public static function insert(Product $product)
     {
+        
         $conn = Database::getConnection();
         $stmt = $conn->prepare(
             "INSERT INTO products (name, description, price, quantity, category, image) 
@@ -24,7 +25,6 @@ class ProductManager
             ':image' => $product->getImage()
         ]);
         return "product added succesfuly";
-
     }
 
     public static function displayAll()
