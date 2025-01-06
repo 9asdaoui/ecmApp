@@ -40,7 +40,7 @@ class Order
                             border-radius: 23px;
                             padding: 5px;" class= "'.$class.'" >'.$this->statu.'</a></td>
             <td>'.$this->totalprice.'</td>
-            <td><a style="text-decoration:none;" type="submit" class="" href="?id='.$this->id.'">see order here ⇗</a></td>
+            <td><a style="text-decoration:none;" type="submit" class="" href="ordersdet.php?order_id='.$this->id.'">see order here ⇗</a></td>
 
         </tr>';
     }

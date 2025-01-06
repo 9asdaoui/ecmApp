@@ -19,4 +19,28 @@ class OrderController{
         }
         return $tableRows;
     }
+
+    public function displayorderinfo($id)
+    {
+        $Orders = OrderManager::displayorder($id);
+
+         $tableRows = $Orders[0]->getOrderInfoHtml();
+      
+    
+        return $tableRows;
+    }
+    
+    public function displayorderitemsinfo($id)
+    {
+        $Orders = OrderManager::displayorder($id);
+        
+        $tableRow = [];
+
+        foreach ($Orders as $order) {
+            $tableRow[] = $order->getProductCardsHtml();
+        }
+    
+        return implode('', $tableRow);    
+    }
+    
 }
