@@ -8,8 +8,6 @@ require_once "Client.php";
 class ClientManager
 {
 
-   
-
     public static function displayAll()
     {
         $conn = Database::getConnection();
@@ -41,15 +39,14 @@ class ClientManager
             ':id' => $id
         ]);
         $statu =  $stmt->fetchAll();
-        if($statu==1){
+        if($statu[0]['is_active']==1){
             $statu=0;
-        }else if($statu==0){
+        }else if($statu[0]['is_active']==0){
             $statu=1;
         }
         $stmt = $conn->prepare(
             "UPDATE clients SET is_active = :statu WHERE user_id = :id"
         );
-
         $stmt->execute([
             ':statu' => $statu,
             ':id' => $id

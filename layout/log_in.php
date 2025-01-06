@@ -1,4 +1,12 @@
-<?php session_start(); ?>
+<?php session_start();
+if(isset($_GET["logout"])){
+  if (isset($_SESSION["userid"])){  
+    unset($_SESSION["userid"]);
+    unset($_SESSION["email"]);
+    unset($_SESSION["role"]);
+    unset($_SESSION["is_active"]);
+    } 
+} ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -128,7 +136,7 @@
           <input type="password" name="password" id="password" required>
           <input type="hidden" name="url" value="login">
           <label for="password">Password</label>
-          <h2 class="error">
+          <h2 class="black" style="color: #333;">
             <?php 
               if (isset($_SESSION["error_message"])) {  
                 echo $_SESSION["error_message"];

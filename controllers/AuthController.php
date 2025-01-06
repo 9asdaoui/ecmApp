@@ -32,7 +32,8 @@ class AuthController{
                 }
     }
     public function login($email,$password){
-           
+        session_start();
+
                 $this->email = $email;
                 $this->password = $password;
             

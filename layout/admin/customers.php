@@ -12,8 +12,8 @@ if(isset($_GET["changestatu"])){
       <input type="text" id="customersSearch" class="form-control mb-3" placeholder="Search Orders...">
       <table class="table table-hover">
         <thead>
-          <tr>
-            <th>customers ID</th>
+          <tr style="font-size: larger;">
+            <th style="width: 100px;">customers ID</th>
             <th>profile</th>
             <th>Customer name</th>
             <th>email</th>

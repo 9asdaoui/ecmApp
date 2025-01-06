@@ -10,7 +10,7 @@ class Client extends User
 {
     private $isActive;
 
-    public function __construct($id,$image, $name, $email, $password, $isActive = true)
+    public function __construct($id=null,$image=null, $name=null, $email=null, $password=null, $isActive = true)
     {
         parent::__construct($id,$image, $name, $email, $password, 'client');
         $this->isActive = $isActive;
@@ -60,9 +60,9 @@ class Client extends User
         if($this->isActive=="active"){$btn="disactivate";}else{$btn="activate";};
 
         return
-        '<tr>
-            <td>'.$this->id.'</td>
-            <td><img src='.$this->image.'></td>
+        '<tr style="font-size: large;">
+            <td >'.$this->id.'</td>
+            <td ><img style="width: 50px;height: 46px;" src=../'.$this->image.'></td>
             <td>'.$this->name.'</td>
             <td>'.$this->email.'</td>
             <td>'.$this->isActive.'</td>

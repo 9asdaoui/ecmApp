@@ -51,62 +51,57 @@ exit();
         box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
     }
 
-        .error {
-            color: red;
-            font-size: 20px;
-        }
-        /* .succes {
-            color: greenyellow;
-            font-size: 20px;
-        } */
-        .main-content-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #f5f5f5;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 16px 24px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+    .error {
+        color: red;
+        font-size: 20px;
+    }
+    .main-content-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #f5f5f5;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 16px 24px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
-        /* Success message styling */
-        .main-content-nav .succes {
-            font-size: 1.2rem;
-            color: #4CAF50; /* Green color for success */
-            margin: 0;
-            font-weight: bold;
-        }
+    .main-content-nav .succes {
+        font-size: 1.2rem;
+        color: #4CAF50; 
+        margin: 0;
+        font-weight: bold;
+    }
 
-        /* Button styling */
-        .main-content-nav button {
-            background-color: #007BFF; /* Blue color for button */
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
+    .main-content-nav button {
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
 
-        /* Button hover effect */
-        .main-content-nav button:hover {
-            background-color: #0056b3; /* Darker blue on hover */
-        }
-        .statubtn{
-            background-color: #007BFF; 
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            font-size: 1rem;
-            cursor: pointer;
-          
-        }
-       
+    .main-content-nav button:hover {
+        background-color: #0056b3;
+    }
+    .statubtn{
+        text-decoration: none;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.4rem;
+        cursor: pointer;
+        padding: 5px;
+
+        
+    }
+    
 </style>
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark" style="position: fixed;width: 100%;z-index: 1;">
             <a class="navbar-brand ps-3" href="index.php">    <h3 class="text-center">Admin Dashboard</h3></a>
@@ -122,9 +117,8 @@ exit();
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#!">Settings</a></li>
-                        <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                        <li><a class="dropdown-item" href="../log_in.php?logout=1">Logout</a></li>
                     </ul>
                 </li>
             </ul>
