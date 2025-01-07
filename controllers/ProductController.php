@@ -19,7 +19,6 @@ class ProductController{
         
     }
     
-
     public function displayAll()
     {
         $products = ProductManager::displayAll();

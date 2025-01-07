@@ -1,7 +1,6 @@
-/* Custom CSS Variables */
 :root {
-    --primary-color: #1a237e;
-    --secondary-color: #283593;
+    --primary-color:  #000000;
+    --secondary-color: #00073a50;
     --accent-color: #d32f2f;
     --background-color: #121212;
     --text-color: #e0e0e0;
@@ -9,7 +8,6 @@
     --transition-speed: 0.3s;
   }
   
-  /* Basic Reset */
   * {
     margin: 0;
     padding: 0;
@@ -177,6 +175,310 @@
   .sidebar a {
     overflow: hidden;
   }
-  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-  
+  /* Container for all cards */
+  #cardes_content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+  }
+
+  /* Card styling */
+  .card {
+    background-color: #333;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: white;
+    transition: transform 0.3s ease;
+    font-family: 'Arial', sans-serif;
+  }
+
+  /* Hover effect for cards */
+  .card:hover {
+    transform: translateY(-10px);
+  }
+
+  /* Card image styling */
+  .card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  /* Card content styling */
+  .card-content {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 300px;
+  }
+
+  .card-content h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .card-content p {
+    font-size: 14px;
+    color: #bbb;
+    margin-bottom: 15px;
+  }
+
+  .card-content .category {
+    font-size: 14px;
+    font-weight: bold;
+    color: #999;
+    margin-bottom: 10px;
+  }
+
+  .card-content .price {
+    font-size: 18px;
+    color: #f1c40f;
+    margin-bottom: 20px;
+  }
+
+  /* Flexbox container for quantity and button */
+  .quantity-container {
+    display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-left: 38px;
+        margin-right: 38px;
+
+  }
+
+  /* Quantity Input Box */
+  .quantity-container input {
+    width: 50px;
+    padding: 8px;
+    text-align: center;
+    background-color: #444;
+    border: 1px solid #555;
+    border-radius: 5px;
+    color: white;
+  }
+
+  /* Quantity Control Buttons */
+  .quantity-container button {
+    background-color: #f39c12;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .quantity-container button:hover {
+    background-color: #e67e22;
+  }
+
+  /* Button style for 'Add to Cart' */
+  .add-to-cart-btn {
+    background-color: #f39c12;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  /* Button hover effect */
+  .add-to-cart-btn:hover {
+    background-color: #e67e22;
+  }
+
+  /* Font Awesome Icon */
+  .add-to-cart-btn i {
+    margin-right: 8px;
+  }
+  #container_cart {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 50px;
+    padding: 20px;
+}
+
+.cart-items {
+    width: 70%;
+    background-color: #333;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.cart-items h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #444;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.cart-item img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+}
+
+.item-details {
+    flex-grow: 1;
+    margin-left: 20px;
+}
+
+.item-details h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.item-details p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.item-price {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.remove-btn {
+    background-color: #e74c3c;
+    border: none;
+    color: white;
+    padding: 5px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cart-summary {
+    width: 30%;
+    background-color: #333;
+    border-radius: 10px;
+    padding: 20px;
+    margin-left: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.cart-summary h3 {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.total-price {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.checkout-btn {
+    display: block;
+    width: 100%;
+    background-color: #2ecc71;
+    padding: 15px;
+    font-size: 18px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.checkout-btn:hover {
+    background-color: #27ae60;
+}
+.empty-cart-message {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #2c2c2c; /* Dark background */
+  color: #ffffff;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.empty-cart-message h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #ff5722; /* Highlighted color for the heading */
+}
+
+.empty-cart-message p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #cccccc;
+}
+
+.shop-now-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #ff5722;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.shop-now-btn:hover {
+  background-color: #e64a19;
+}
+.cart-btn {
+  position: fixed;
+  bottom: 80px;
+  right: 60px;
+  background-color: orange;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  transition: all 0.3s ease-in-out;
+}
+
+.cart-btn:hover {
+  background-color: #ff5722;
+  transform: translateY(-5px);
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.4);
+}
+
+.cart-btn i {
+  font-size: 18px;
+}
