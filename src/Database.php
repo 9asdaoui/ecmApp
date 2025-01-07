@@ -10,7 +10,7 @@ class Database
     private static $password = "redaader@2000";
     private static $conn;
 
-    public static function getConnection()
+    public static  function getConnection()
     {
         if(self::$conn){
             return self::$conn;
@@ -22,4 +22,4 @@ class Database
     }
 }
 
-// Database::getConnection();
+Database::getConnection();
