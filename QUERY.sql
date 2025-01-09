@@ -50,4 +50,19 @@ INSERT INTO order_items (order_id, product_id, quantity, price)
 VALUES 
     (1, 101, 2, 19.99),  -- Order ID 1, Product ID 101, Quantity 2, Price 19.99 each
     (1, 102, 1, 59.99);  -- Order ID 1, Product ID 102, Quantity 1, Price 59.99 each
+-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+select * from orders where user_id = 20;                                                           ! 
+                                                                                                   !
 
+
+SELECT 
+    orders.id as orderid,
+	products.name AS product_name,
+	products.image AS product_image,
+	order_items.quantity AS product_quantity,
+	order_items.price AS product_price
+FROM order_items
+JOIN products ON order_items.product_id = products.id
+INNER JOIN 
+	orders ON  order_items.order_id=orders.id
+where orders.id = 19;

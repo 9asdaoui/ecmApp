@@ -26,7 +26,6 @@ class OrderController{
 
          $tableRows = $Orders[0]->getOrderInfoHtml();
       
-    
         return $tableRows;
     }
     

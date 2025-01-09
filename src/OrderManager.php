@@ -1,7 +1,4 @@
 <?php
-// namespace Ecm\App;
-// use Ecm\App\Database;
-// use Ecm\App\Order;
 require_once "Database.php";
 require_once "Order.php";
 require_once "OrdersItems.php";
@@ -86,16 +83,66 @@ class OrderManager
         return $data;
     }
     
-    
 
 
-    public function placeOrder()
+
+    public function placeOrder($userId,$total_price)
     {
-        // Logic to place an order
-    }
+        $conn = Database::getConnection();
 
-    public function deleteOrder($orderId)
-    {
-        // Logic to delete an order
+        try {
+            $conn->beginTransaction();
+            
+            $orderQuery = "INSERT INTO orders (user_id, total_price) VALUES (:userId, :total_price)";
+            $stmtOrder = $conn->prepare($orderQuery);
+            $stmtOrder->execute([
+                ':userId' => $userId,
+                ':total_price' => $total_price
+            ]);
+            
+            $orderId = $conn->lastInsertId();
+            
+            $itemQuery = "INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (:orderId, :productId, :quantity, :price)";
+            $stmtItem = $conn->prepare($itemQuery);
+            
+            $priceQuery = "SELECT price FROM products WHERE id = :productId";
+            $stmtPrice = $conn->prepare($priceQuery);
+            
+            foreach ($_POST as $key => $value) {
+                if (strpos($key, 'product_id_') === 0) {
+                    $num = str_replace('product_id_', '', $key);
+                    $productId = $value;
+                    
+                    $quantityKey = "quantity_$num";
+                    $quantity = $_POST[$quantityKey] ?? 1;
+                    
+                    $stmtPrice->execute([':productId' => $productId]);
+                    $product = $stmtPrice->fetch(PDO::FETCH_ASSOC);
+                    
+                    if (!$product) {
+                        throw new Exception("Product not found: $productId");
+                    }
+                    
+                    $price = $product['price'];
+                    
+                    $stmtItem->execute([
+                        ':orderId' => $orderId,
+                        ':productId' => $productId,
+                        ':quantity' => $quantity,
+                        ':price' => $price
+                    ]);
+                }
+            }
+            
+            $conn->commit();
+            
+            http_response_code(200);
+            return 'succes';
+            
+        } catch (Exception $e) {
+            $conn->rollBack();
+            return 'not succes';
+        }
+
     }
 }

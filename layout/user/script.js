@@ -350,12 +350,12 @@ function renderItems(json) {
   summaryContainer.appendChild(checkoutBtn);
 }
 
-async function placeOrder(user_id, price) {
+async function placeOrder(user_id, totprice) {
   const cart = JSON.parse(localStorage.getItem('cart')) || [];
   const formData = new FormData();
   
   formData.append('userId', user_id);
-  formData.append('price', price);
+  formData.append('price', totprice);
   
   cart.forEach((item, index) => {
       const num = index + 1;
@@ -372,18 +372,72 @@ async function placeOrder(user_id, price) {
       });
 
       const data = await response.json();
-
-      if (!response.ok) {
-          throw new Error(data.error || `Error: ${response.status}`);
+      if (data === 'not succes') {
+          throw new Error(`${data} try again.`);
       }
 
       localStorage.removeItem('cart');
-      errorMessage()
-      alert('Order placed successfully!');
-      window.location.href = url;
+      window.location.href = "http://ecmapp.test/layout/user/orders.php";
       
   } catch (error) {
-      alert('Failed to place order: ' + error.message);
-      console.error('Error:', error.message);
+      alert(error);
   }
-}                                                                                                                                                                                  
+}          
+
+if (window.location.href.match('http://ecmapp.test/layout/user/orders.php') != null) {
+  const userId = localStorage.getItem("user_id");
+  fetch_orders_data(userId) }
+
+async function fetch_orders_data(user_id){
+  const url = `http://ecmapp.test/controllers/api.php?user_id=${user_id}`;
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`somthing went wrong`);
+    }
+
+    const json = await response.json();
+    renderOrders(json);
+  } catch (error) {
+    console.error(error.message);
+    }
+}
+
+function renderOrders(orders) {
+  const container = document.getElementById("content");
+  container.innerHTML = "";
+
+  orders.forEach((orderData) => {
+    const { order, products } = orderData;
+
+    const orderCard = document.createElement("div");
+    orderCard.className = "order-card";
+    orderCard.innerHTML = `
+      <div class="order-header">
+        <h2>Order #${order.id}</h2>
+        <p class="order-details">Date: ${order.order_date}</p>
+      </div>
+      <p class="order-details">State: ${order.status}</p>
+      <p class="order-details">Total Price: $${order.total_price}</p>
+      <div class="products"></div>
+    `;
+
+    const productsContainer = orderCard.querySelector(".products");
+    products.forEach((product) => {
+      const productCard = document.createElement("div");
+      productCard.className = "product-card";
+      productCard.innerHTML = `
+        <img src="${product.product_image}" alt="${product.product_name}">
+        <div class="product-info">
+          <h4>${product.product_name}</h4>
+          <p>$${product.product_price}</p>
+        </div>
+        <div class="quantity">x${product.product_quantity}</div>
+      `;
+      productsContainer.appendChild(productCard);
+    });
+
+    container.appendChild(orderCard);
+  });
+}
+//==============================================================================

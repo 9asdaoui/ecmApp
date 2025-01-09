@@ -49,8 +49,6 @@ class OrderItems {
                     <p><strong>Price:</strong> \${$this->product_price} each</p>
                 </div>
             ";
-        
-       
     }
 }
 ?>
