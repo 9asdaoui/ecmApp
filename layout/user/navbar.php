@@ -8,6 +8,7 @@ if (!isset($_SESSION["userid"])||$_SESSION["role"]!=="client"||$_SESSION["is_act
         header("location:../log_in.php");}
 exit();
 }
+$user_id = $_SESSION["userid"];
 ?>
 <!DOCTYPE html>
 <html lang="en">

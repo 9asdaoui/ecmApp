@@ -10,6 +10,8 @@ class OrderItems {
     private $product_image;
     private $product_quantity;
     private $product_price;
+
+    
     public function __construct($order_id, $client_name, $client_image, $order_status, $order_total_price, $order_date, $product_name,
     $product_image , $product_quantity, $product_price) {
         $this->order_id = $order_id;

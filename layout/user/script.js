@@ -54,8 +54,7 @@ async function fetch_items(){
     }); 
     
     const url = `http://ecmapp.test/controllers/api.php/?itemsIds=${path}`;
-    console.log(url);
-    console.log(path);
+    console.log(cart);
 
   try {
     const response = await fetch(url);
@@ -344,12 +343,47 @@ function renderItems(json) {
   const checkoutBtn = document.createElement('button');
   checkoutBtn.classList.add('checkout-btn');
   checkoutBtn.textContent = 'Proceed to Checkout';
-  // checkoutBtn.onclick = () => {
-  //   alert('Order confirmed!');
-  //   json.length = 0;
-  //   renderItems(json);
-  // };
+  const userId = localStorage.getItem("user_id");
+
+  checkoutBtn.setAttribute("onclick", `placeOrder(${userId},${subtotal})`);
+
   summaryContainer.appendChild(checkoutBtn);
 }
 
+async function placeOrder(user_id, price) {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const formData = new FormData();
+  
+  formData.append('userId', user_id);
+  formData.append('price', price);
+  
+  cart.forEach((item, index) => {
+      const num = index + 1;
+      formData.append(`product_id_${num}`, item.id);
+      formData.append(`quantity_${num}`, item.quantity);
+  });
 
+  const url = "http://ecmapp.test/controllers/api.php/";
+  
+  try {
+      const response = await fetch(url, {
+          method: "POST",
+          body: formData
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+          throw new Error(data.error || `Error: ${response.status}`);
+      }
+
+      localStorage.removeItem('cart');
+      errorMessage()
+      alert('Order placed successfully!');
+      window.location.href = url;
+      
+  } catch (error) {
+      alert('Failed to place order: ' + error.message);
+      console.error('Error:', error.message);
+  }
+}                                                                                                                                                                                  

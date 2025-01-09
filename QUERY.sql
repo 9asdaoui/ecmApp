@@ -41,3 +41,13 @@ CREATE TABLE products (
     category VARCHAR(100),
     image VARCHAR(255)
 );
+
+
+INSERT INTO orders (user_id, status, total_price) 
+VALUES (1, 'pending', 99.99);
+
+INSERT INTO order_items (order_id, product_id, quantity, price)
+VALUES 
+    (1, 101, 2, 19.99),  -- Order ID 1, Product ID 101, Quantity 2, Price 19.99 each
+    (1, 102, 1, 59.99);  -- Order ID 1, Product ID 102, Quantity 1, Price 59.99 each
+
