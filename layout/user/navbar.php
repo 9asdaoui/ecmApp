@@ -6,9 +6,9 @@ if (!isset($_SESSION["userid"])||$_SESSION["role"]!=="client"||$_SESSION["is_act
         header("location:../401.html");
     }else{
         header("location:../log_in.php");}
-exit();
+}else{
+    $user_id = $_SESSION["userid"];
 }
-$user_id = $_SESSION["userid"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,12 +16,9 @@ $user_id = $_SESSION["userid"];
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Responsive Navbar with Sidebar</title>
-  <st</style>
   <link href="style.css" rel="stylesheet">
-
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  
 </head>
 <body>
 
@@ -45,6 +42,6 @@ $user_id = $_SESSION["userid"];
     <a href="index.php"><i class="fas fa-home"></i> Home</a>
     <a href="orders.php"><i class="fas fa-box"></i> Orders</a>
     <a href="cart.php" ><i class="fas fa-shopping-cart"></i> Cart</a>
-    <a href="#"><i class="fa fa-sign-in"></i> Logout</a>
+    <a href="../log_in.php?logout=1"><i class="fa fa-sign-in"></i> Logout</a>
     <a href="#"><i class="fa fa-cog"></i> Settings</a>
   </div>

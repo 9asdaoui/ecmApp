@@ -1,7 +1,4 @@
 <?php
-// namespace Ecm\App;
-
-// use Ecm\App\Database;
 require_once "Database.php";
 
 class User
@@ -58,11 +55,4 @@ class User
     }
 
 }
-// $reda = new User;
-// $mess  = $reda->login("oussy@gmail.com","1234");
-// echo $mess;
-// echo $_SESSION["userid"];
-// echo $_SESSION["email"];
-// echo $_SESSION["role"];           
-// echo $_SESSION["is_active"];
 ?>

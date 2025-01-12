@@ -139,7 +139,7 @@ class OrderManager
             http_response_code(200);
             return 'succes';
             
-        } catch (Exception $e) {
+        } catch (Exception) {
             $conn->rollBack();
             return 'not succes';
         }
